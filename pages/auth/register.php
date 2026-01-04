@@ -10,9 +10,14 @@ require_once '../../classes/Security.php';
 
 // Si déjà connecté, rediriger
 if (Security::isLoggedIn()) {
-    header('Location: ../teacher/dashboard.php');
+    if ($_SESSION['user_role'] === 'enseignant') {
+        header('Location: ../teacher/dashboard.php');
+    } else {
+        header('Location: ../student/dashboard.php');
+    }
     exit();
 }
+
 
 // Récupérer les messages d'erreur
 $error = $_SESSION['register_error'] ?? '';
