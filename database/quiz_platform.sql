@@ -89,7 +89,7 @@ INSERT INTO `questions` (`id`, `quiz_id`, `question`, `option1`, `option2`, `opt
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quiz`
+--@block Table structure for table `quiz`
 --
 
 CREATE TABLE `quiz` (
@@ -99,6 +99,7 @@ CREATE TABLE `quiz` (
   `categorie_id` int NOT NULL,
   `enseignant_id` int NOT NULL,
   `is_active` tinyint(1) DEFAULT '1',
+  ALTER TABLE quiz ADD COLUMN is_published TINYINT(1) DEFAULT 1;
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
