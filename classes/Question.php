@@ -99,4 +99,23 @@ class Question {
         $data = $result->fetch();
         return (int)$data['count'];
     }
+
+
+
+
+
+
+
+    //etudient
+   
+public function getQuestionsByQuizId($quizId) {
+    $sql = "SELECT * FROM questions
+            WHERE quiz_id = ?
+            ORDER BY id ASC";
+
+    $result = $this->db->query($sql, [$quizId]);
+    return $result->fetchAll();
+}
+
+
 }

@@ -112,4 +112,54 @@ class Category {
         $result = $this->db->query($sql);
         return $result->fetchAll();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    // étudiant
+public function getAllcountcategorie() {
+        $sql = "
+            SELECT c.*, COUNT(q.id) AS quiz_count
+            FROM categories c
+            LEFT JOIN quiz q ON q.categorie_id = c.id
+            GROUP BY c.id
+            ORDER BY c.nom ASC
+        ";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll();
+    }
+
+  
+    public function getCategoryQuizzes($categoryId) {
+        $sql = "
+            SELECT q.*, c.nom AS categorie_nom
+            FROM quiz q
+            JOIN categories c ON q.categorie_id = c.id
+            WHERE c.id = ?
+        ";
+        $stmt = $this->db->query($sql, [$categoryId]);
+        return $stmt->fetchAll();
+    }
+
+   
+    public function getCategoryById($categoryId) {
+        $sql = "SELECT * FROM categories WHERE id = ?";
+        $stmt = $this->db->query($sql, [$categoryId]);
+        return $stmt->fetch();
+    }
+
+
+
+
+
+
+    
 }
